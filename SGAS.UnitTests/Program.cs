@@ -12,7 +12,7 @@ using Neo.VM;
 using Neo.Wallets;
 using VMArray = Neo.VM.Types.Array;
 
-namespace NeoContract.UnitTests
+namespace UnitTests
 {
     class Program
     {
@@ -22,7 +22,7 @@ namespace NeoContract.UnitTests
             //Path of blockchain folder
             Blockchain.RegisterBlockchain(new LevelDBBlockchain("C:\\Users\\chenz\\Desktop\\PrivateNet\\neo-gui 2.7.6\\Chain_0001142D"));
 
-            SGASTest.MintTokens();
+            CGASTest.MintTokens();
             //SGASTest.Refund();
             //SGASTest.Verify();
 

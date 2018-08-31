@@ -6,9 +6,9 @@ using System.ComponentModel;
 using System.Numerics;
 using System;
 
-namespace SGAS
+namespace CGAS
 {
-    public class SGAS : SmartContract
+    public class CGAS : SmartContract
     {
         [DisplayName("transfer")]
         public static event deleTransfer Transferred;

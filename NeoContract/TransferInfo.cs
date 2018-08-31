@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace SGAS
+namespace CGAS
 {
     public class TransferInfo
     {

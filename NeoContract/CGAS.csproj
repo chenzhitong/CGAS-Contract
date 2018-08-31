@@ -8,8 +8,8 @@
     <ProjectGuid>{15DFB6B6-A57D-4A26-A5B7-EA1B2D102E20}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SGAS</RootNamespace>
-    <AssemblyName>SGAS</AssemblyName>
+    <RootNamespace>CGAS</RootNamespace>
+    <AssemblyName>CGAS</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SGAS.cs" />
+    <Compile Include="CGAS.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransferInfo.cs" />
   </ItemGroup>
