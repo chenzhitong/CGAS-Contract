@@ -263,7 +263,7 @@ namespace SGAS
         }
 
         [DisplayName("symbol")]
-        public static string Symbol() => "SGAS";
+        public static string Symbol() => "CGAS";
 
         [DisplayName("supportedStandards")]
         public static object SupportedStandards() => "{\"NEP-5\", \"NEP-7\", \"NEP-10\"}";
