@@ -14,9 +14,9 @@ neo-gui 2.7.6
 | decimals                 | see nep-5                          | neo-gui                        | ✅           |
 | getRefundTarget          | get who want to refund this UTXO   | neo-gui                        | ✅           |
 | getTxInfo                | get tx info                        | neo-gui                        | ✅           |
-| mintTokens               | GAS → SGAS                         | c# code + neo-cli              | ✅           |
+| mintTokens               | GAS → CGAS                         | c# code + neo-cli              | ✅           |
 | name                     | see nep-5                          | neo-gui                        | ✅           |
-| refund                   | SGAS → GAS 1/2 step                | c# code + neo-cli              | ✅           |
+| refund                   | CGAS → GAS 1/2 step                | c# code + neo-cli              | ✅           |
 | symbol                   | see nep-5                          | neo-gui                        | ✅           |
 | totalSupply              | see nep-5                          | neo-gui                        | ✅           |
 | transfer                 | see nep-5                          | neo-gui or neo-cli             | ✅           |
