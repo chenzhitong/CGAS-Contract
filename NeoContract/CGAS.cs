@@ -6,9 +6,9 @@ using System.ComponentModel;
 using System.Numerics;
 using System;
 
-namespace SGAS
+namespace CGAS
 {
-    public class SGAS : SmartContract
+    public class CGAS : SmartContract
     {
         [DisplayName("transfer")]
         public static event deleTransfer Transferred;
@@ -263,7 +263,7 @@ namespace SGAS
         }
 
         [DisplayName("symbol")]
-        public static string Symbol() => "SGAS";
+        public static string Symbol() => "CGAS";
 
         [DisplayName("supportedStandards")]
         public static object SupportedStandards() => "{\"NEP-5\", \"NEP-7\", \"NEP-10\"}";

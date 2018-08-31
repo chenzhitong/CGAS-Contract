@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{5C287CB0-FC56-482A-8C91-DB83B60C9B70}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SGAS.UnitTests</RootNamespace>
-    <AssemblyName>SGAS.UnitTests</AssemblyName>
+    <RootNamespace>UnitTests</RootNamespace>
+    <AssemblyName>UnitTests</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -222,7 +222,7 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SGASTest.cs" />
+    <Compile Include="CGASTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

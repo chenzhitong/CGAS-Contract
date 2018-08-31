@@ -11,9 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NeoContract.UnitTests
+namespace UnitTests
 {
-    public static class SGASTest
+    public static class CGASTest
     {
         static readonly UInt160 SgasAddress = Wallet.ToScriptHash("AJk6Ugmz2bJGhoye9EAnssvvLghf6YmptA");
         static readonly UInt160 ScriptHash = new UInt160("0x3cfb49c6eb5360440bdd226528ada99e8d419220".Remove(0, 2).HexToBytes().Reverse().ToArray());
