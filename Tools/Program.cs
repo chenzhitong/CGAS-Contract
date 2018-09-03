@@ -13,9 +13,9 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             //address 2 script hash
-            Console.WriteLine(Neo.Wallets.Wallet.ToScriptHash("AJd31a8rYPEBkY1QSxpsGy8mdU4vTYTD4U"));
+            Console.WriteLine(Neo.Wallets.Wallet.ToScriptHash("AK4LdT5ZXR9DQZjfk5X6Xy79mE8ad8jKAW"));
             //script hash 2 address
-            Console.WriteLine(Neo.Wallets.Wallet.ToAddress(new UInt160("0xeee76c45175b5af08630b2278a24803368284a1e".Remove(0, 2).HexToBytes().Reverse().ToArray())));            
+            Console.WriteLine(Neo.Wallets.Wallet.ToAddress(new UInt160("0x9121e89e8a0849857262d67c8408601b5e8e0524".Remove(0, 2).HexToBytes().Reverse().ToArray())));            
 
             //hex string 2 string
             Console.WriteLine("7472616e73666572".HexToString());

@@ -16,7 +16,7 @@ namespace CGAS
 
         [DisplayName("refund")]
         public static event deleRefundTarget Refunded;
-        public delegate void deleRefundTarget(byte[] txid, byte[] who);
+        public delegate void deleRefundTarget(byte[] txId, byte[] who);
 
         private static readonly byte[] AssetId = Helper.HexToBytes("e72d286979ee6cb1b7e65dfddfb2e384100b8d148e7758de42e4168b71792c60"); //GAS ID, littleEndian
 
@@ -266,7 +266,7 @@ namespace CGAS
         public static string Symbol() => "CGAS";
 
         [DisplayName("supportedStandards")]
-        public static object SupportedStandards() => "{\"NEP-5\", \"NEP-7\", \"NEP-10\"}";
+        public static string SupportedStandards() => "{\"NEP-5\", \"NEP-7\", \"NEP-10\"}";
 
         [DisplayName("totalSupply")]
         public static BigInteger TotalSupply()

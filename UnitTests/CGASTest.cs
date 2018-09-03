@@ -15,8 +15,8 @@ namespace UnitTests
 {
     public static class CGASTest
     {
-        static readonly UInt160 SgasAddress = Wallet.ToScriptHash("AJk6Ugmz2bJGhoye9EAnssvvLghf6YmptA");
-        static readonly UInt160 ScriptHash = new UInt160("0x3cfb49c6eb5360440bdd226528ada99e8d419220".Remove(0, 2).HexToBytes().Reverse().ToArray());
+        static readonly UInt160 SgasAddress = Wallet.ToScriptHash("AK4LdT5ZXR9DQZjfk5X6Xy79mE8ad8jKAW");
+        static readonly UInt160 ScriptHash = new UInt160("0x9121e89e8a0849857262d67c8408601b5e8e0524".Remove(0, 2).HexToBytes().Reverse().ToArray());
         static readonly UInt160 User = Wallet.ToScriptHash("AJd31a8rYPEBkY1QSxpsGy8mdU4vTYTD4U");
         static readonly byte[] UserScript = "2103ad1d70f140d84a90ad4491cdf175fa64bfa9287a006e8cbd8f8db8500b5205baac".HexToBytes();
 
