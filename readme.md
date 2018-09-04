@@ -6,7 +6,7 @@ CGAS 是由 NGD（NEO Global Development）发布的符合 NEP-5 规范的合约
 
 ## 技术介绍：
 
-Script Hash: 0x9121e89e8a0849857262d67c8408601b5e8e0524
+Script Hash: [0x9121e89e8a0849857262d67c8408601b5e8e0524](https://neotracker.io/contract/9121e89e8a0849857262d67c8408601b5e8e0524)
 
 合约地址：AK4LdT5ZXR9DQZjfk5X6Xy79mE8ad8jKAW
 
