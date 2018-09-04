@@ -23,8 +23,8 @@ namespace UnitTests
             Blockchain.RegisterBlockchain(new LevelDBBlockchain("C:\\Users\\chenz\\Desktop\\PrivateNet\\neo-gui 2.7.6\\Chain_0001142D"));
 
             CGASTest.MintTokens();
-            //SGASTest.Refund();
-            //SGASTest.Verify();
+            //CGASTest.Refund();
+            //CGASTest.Verify();
 
             Console.ReadLine();
         }

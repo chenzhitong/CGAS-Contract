@@ -112,7 +112,7 @@ namespace UnitTests
         {
             var inputs = new List<CoinReference> {
                 new CoinReference(){
-                    PrevHash = new UInt256("0xdb4c4f1a17b365a68497ef0e118db89b827db24f67ee71d317d38c68c84424ef".Remove(0, 2).HexToBytes().Reverse().ToArray()),
+                    PrevHash = new UInt256("0x44d5a5ef32c8ec780de59ca59cb799efd1bf3051d9a2c94a2b1d13af34abe7ca".Remove(0, 2).HexToBytes().Reverse().ToArray()),
                     PrevIndex = 0 //1
                 }
             }.ToArray();
@@ -121,7 +121,7 @@ namespace UnitTests
             {
                 AssetId = Blockchain.UtilityToken.Hash, //Asset Id, this is GAS
                 ScriptHash = SgasAddress, //SGAS 地址
-                Value = new Fixed8((long)(1 * (long)Math.Pow(10, 8))) //Value
+                Value = new Fixed8((long)(9.99 * (long)Math.Pow(10, 8))) //Value
             }}.ToArray();
 
             Transaction tx = null;
@@ -246,7 +246,7 @@ namespace UnitTests
             var outputs = new List<TransactionOutput>{ new TransactionOutput()
             {
                 AssetId = Blockchain.UtilityToken.Hash, //Asset Id, this is GAS
-                ScriptHash = SgasAddress,//SGAS 地址
+                ScriptHash = User,//SGAS 地址
                 Value = new Fixed8((long)(1 * (long)Math.Pow(10, 8))) //Value
             }}.ToArray();
 
@@ -263,14 +263,11 @@ namespace UnitTests
             var witness = new Witness
             {
                 InvocationScript = verificationScript,
-                //未部署的合约不能执行 Storage.Get() 方法，所以要将合约部署，而不是调用本地的 AVM 文件
-                //VerificationScript = File.ReadAllBytes("C:\\Users\\chenz\\Documents\\1Code\\chenzhitong\\NeoContract5\\NeoContract\\bin\\Debug\\SGAS.avm")
                 VerificationScript = Blockchain.Default.GetContract(ScriptHash).Script
             };
-            tx = new InvocationTransaction
+            tx = new ContractTransaction
             {
                 Version = 0,
-                Script = new byte[0],
                 Outputs = outputs,
                 Inputs = inputs,
                 Attributes = new TransactionAttribute[0],
