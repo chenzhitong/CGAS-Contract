@@ -1,5 +1,58 @@
 # CGAS
 
+[English](#en) [简体中文](#zh)
+
+<a name="en"></a>
+
+## Overview:
+
+CGAS refer to NEP-5 contract assets issued by NGD (NEO Global Development). CGAS can be exchanged for GAS at a 1:1 ratio and are fully refundable. The contract aims to map global assets GAS for the benefit of its internal transfer using the method of contract invocation.
+
+## Descriptions:
+
+Script Hash: [0x9121e89e8a0849857262d67c8408601b5e8e0524](https://neotracker.io/contract/9121e89e8a0849857262d67c8408601b5e8e0524)
+
+CGAS Contract Address: AK4LdT5ZXR9DQZjfk5X6Xy79mE8ad8jKAW
+
+Methods defined in NEP-5 standard:
+
+| Methods     | Parameters                         | Return value | Descriptions                                                 |
+| ----------- | ---------------------------------- | ------------ | ------------------------------------------------------------ |
+| balanceOf   | byte[] account                     | int          | Get the CGAS balance of an account. The return value is the actual amount x 10⁸. |
+| decimals    |                                    | int          | Get the decimals of CGAS. The return value is constant 8.    |
+| name        |                                    | string       | Get the contract name. The return value is constant "NEP5 GAS". |
+| symbol      |                                    | string       | Get the contract symbol. The return value is constant "CGAS". |
+| totalSupply |                                    | int          | Get the total supply of CGAS. The return value is the actual amount × 10⁸. Given that CGAS is exchanged for GAS at a 1:1 ratio, the GAS amount retrieved from the contract address is equal to the total supply of CGAS. |
+| transfer    | byte[] from, byte[] to, int amount | bool         | A transfer method that transfers CGAS from the sender account to the recipient account. The transfer value is the "amount"; "from" and "to" are script hash value and "amount" is the actual transfer amount × 10⁸. |
+
+Additional methods other than NEP-5 methods used to support GAS-CGAS swap:
+
+| Methods            | Parameters                         | Return value                                | Descriptions                                                 |
+| ------------------ | ---------------------------------- | ------------------------------------------- | ------------------------------------------------------------ |
+| getRefundTarget    | byte[] txId                        | byte[]                                      | Get the owner of the UTXO pending refund; the parameter is the TxId of the UTXO (confirm that a UTXO consists of TxId and output index; the output index takes the default value of 0); the return value is the account the UTXO is refunded to, whose owner can set the UTXO as a transaction input and send GAS from the CGAS address to his/her account. |
+| getTxInfo          | byte[] txId                        | [TransferInfo](NeoContract/TransferInfo.cs) | Get detailed transfer info under a TxId. TxInfo will be recorded under the following 4 instructions: mintTokens, refund, transfer, transferAPP. |
+| mintTokens         |                                    | bool                                        | A mintTokens method for CGAS users, who can transfer GAS to CGAS contract address by constructing InvocationTransaction and convert GAS to CGAS by invoking mintTokens method. Upon successful  invocation, CGAS in the equal value of the GAS will be added to the user's asset account. |
+| refund             | byte[] from                        | bool                                        | It takes two steps to claim CGAS and convert it to GAS. First, construct an InvocationTransaction, including  GAS transfer from the CGAS address to the CGAS address (the transfer amount should be the GAS amount users expect to get refunded) and the invocation of refund method (set the parameter as the Script Hash of the refund account). Upon successful invocation, CGAS in the equal amount of the refunded GAS will be automatically destroyed and the No.0 output of the transaction will be marked with the ownership of the user. Second, the user may construct a transaction and set the UTXO marked in the first step as a transaction input and his/her account as the transaction output to get GAS from the CGAS address. |
+| transferAPP        | byte[] from, byte[] to, int amount | bool                                        | Transfer by contract call; parameter setting can be referred to the transfer method. |
+| supportedStandards |                                    | string                                      | NEP-10 standard for return contract; the return value is constant "{\"NEP-5\", \"NEP-7\", \"NEP-10\"}". |
+
+Notification defined in NEP-5 standard:
+
+
+| Notification | Parameters                        | Descriptions                                                 |
+| ------------ | --------------------------------- | ------------------------------------------------------------ |
+| transfer     | byte[] from, byte[] to, int value | Notification contains the three elements of transfer: sender (from), recipient (to) and transfer value (value). CGAS is the default type of assets for transfer. |
+
+Other notifications realized in the contract:
+
+
+
+| Notification | Parameters              | Descriptions                                                 |
+| ------------ | ----------------------- | ------------------------------------------------------------ |
+| refund       | byte[] txid, byte[] who | Notification contains two elements of transfer: UTXO pending refund (txid) and Script Hash of refund account (who). |
+
+<a name="zh"></a>
+
 ## 合约说明：
 
 CGAS 是由 NGD（NEO Global Development）发布的符合 NEP-5 规范的合约资产，CGAS 可由 GAS 一比一地对换，并且支持退回操作。该合约的目的是将 GAS 进行全局资产的合约映射，使全局资产 GAS 可以方便地在合约内部流转，支持由合约调用转账。
@@ -8,7 +61,7 @@ CGAS 是由 NGD（NEO Global Development）发布的符合 NEP-5 规范的合约
 
 Script Hash: [0x9121e89e8a0849857262d67c8408601b5e8e0524](https://neotracker.io/contract/9121e89e8a0849857262d67c8408601b5e8e0524)
 
-合约地址：AK4LdT5ZXR9DQZjfk5X6Xy79mE8ad8jKAW
+CGAS 合约地址：AK4LdT5ZXR9DQZjfk5X6Xy79mE8ad8jKAW
 
 NEP-5 规范中的方法：
 
@@ -34,12 +87,16 @@ NEP-5 规范中的方法：
 
 NEP-5 规范中的通知：
 
+
+
 | 通知     | 参数                              | 描述                                                         |
 | -------- | --------------------------------- | ------------------------------------------------------------ |
 | transfer | byte[] from, byte[] to, int value | 通知中包含转账的 3 个要素，发送者 （from），接收者 （to） ，转账金额 （value）, 转账资产默认为 CGAS |
 
 该合约实现的其它通知：
 
-| 方法   | 参数                    | 描述                                                         |
+
+| 通知   | 参数                    | 描述                                                         |
 | ------ | ----------------------- | ------------------------------------------------------------ |
 | refund | byte[] txid, byte[] who | 通知中包含转账的 2 个要素，待退回的 UTXO（txid），退回者的 Script Hash（who） |
+
