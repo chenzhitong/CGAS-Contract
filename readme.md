@@ -72,7 +72,7 @@ NEP-5 规范中的方法：
 | name        |                                    | string | 获得合约名称，返回值为常量 “NEP5 GAS”                        |
 | symbol      |                                    | string | 获得合约符号，返回值为常量 “CGAS”                            |
 | totalSupply |                                    | int    | 获得 CGAS 总发行量，返回结果为真实值 × 10⁸。因为 CGAS 与 GAS 为一比一兑换，所以合约地址中 GAS 的数量等于 CGAS 的总发行量 |
-| transfer    | byte[] from, byte[] to, int amount | bool   | 转账方法，将 CGAS 从发发送者（from）账户，转到接收者（to）账户，转账金额为 amount；from 与 to 为 Script Hash，amount 为实际转账金额 × 10⁸ |
+| transfer    | byte[] from, byte[] to, int amount | bool   | 转账方法，将 CGAS 从发送者（from）账户，转到接收者（to）账户，转账金额为 amount；from 与 to 为 Script Hash，amount 为实际转账金额 × 10⁸ |
 
 该合约为了支持 GAS 与 CGAS 互换，除了满足 NEP-5 规范中的方法其它方法：
 
