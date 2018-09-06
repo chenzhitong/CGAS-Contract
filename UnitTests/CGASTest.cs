@@ -15,12 +15,12 @@ namespace UnitTests
 {
     public static class CGASTest
     {
-        static readonly UInt160 SgasAddress = Wallet.ToScriptHash("AK4LdT5ZXR9DQZjfk5X6Xy79mE8ad8jKAW");
+        static readonly UInt160 CgasAddress = Wallet.ToScriptHash("AK4LdT5ZXR9DQZjfk5X6Xy79mE8ad8jKAW");
         static readonly UInt160 ScriptHash = new UInt160("0x9121e89e8a0849857262d67c8408601b5e8e0524".Remove(0, 2).HexToBytes().Reverse().ToArray());
         static readonly UInt160 User = Wallet.ToScriptHash("AJd31a8rYPEBkY1QSxpsGy8mdU4vTYTD4U");
         static readonly byte[] UserScript = "2103ad1d70f140d84a90ad4491cdf175fa64bfa9287a006e8cbd8f8db8500b5205baac".HexToBytes();
 
-        //SGAS MintTokens
+        //CGAS MintTokens
         public static void MintTokens()
         {
             var inputs = new List<CoinReference> {
@@ -34,7 +34,7 @@ namespace UnitTests
             var outputs = new List<TransactionOutput>{ new TransactionOutput()
             {
                 AssetId = Blockchain.UtilityToken.Hash, //Asset Id, this is GAS
-                ScriptHash = SgasAddress, //SGAS 地址
+                ScriptHash = CgasAddress, //CGAS 地址
                 Value = new Fixed8((long)(1 * (long)Math.Pow(10, 8))) //Value
             }}.ToArray();
 
@@ -120,7 +120,7 @@ namespace UnitTests
             var outputs = new List<TransactionOutput>{ new TransactionOutput()
             {
                 AssetId = Blockchain.UtilityToken.Hash, //Asset Id, this is GAS
-                ScriptHash = SgasAddress, //SGAS 地址
+                ScriptHash = CgasAddress, //CGAS 地址
                 Value = new Fixed8((long)(9.99 * (long)Math.Pow(10, 8))) //Value
             }}.ToArray();
 
@@ -246,7 +246,7 @@ namespace UnitTests
             var outputs = new List<TransactionOutput>{ new TransactionOutput()
             {
                 AssetId = Blockchain.UtilityToken.Hash, //Asset Id, this is GAS
-                ScriptHash = User,//SGAS 地址
+                ScriptHash = User,//CGAS 地址
                 Value = new Fixed8((long)(1 * (long)Math.Pow(10, 8))) //Value
             }}.ToArray();
 

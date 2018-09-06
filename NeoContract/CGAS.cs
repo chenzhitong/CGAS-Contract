@@ -163,7 +163,7 @@ namespace CGAS
             {
                 if (input.AssetId.AsBigInteger() == AssetId.AsBigInteger())
                     sender = sender ?? input.ScriptHash;
-                //SGAS address as inputs is not allowed
+                //CGAS address as inputs is not allowed
                 if (input.ScriptHash.AsBigInteger() == ExecutionEngine.ExecutingScriptHash.AsBigInteger())
                     return false;
             }
