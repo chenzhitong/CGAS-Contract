@@ -94,8 +94,6 @@ namespace CGAS
                 if (method == "totalSupply") return TotalSupply();
 
                 if (method == "transfer") return Transfer((byte[])args[0], (byte[])args[1], (BigInteger)args[2], callscript);
-
-                if (method == "transferAPP") return TransferAPP((byte[])args[0], (byte[])args[1], (BigInteger)args[2], callscript);
             }
             else if (Runtime.Trigger == TriggerType.VerificationR) //Backward compatibility, refusing to accept other assets
             {
@@ -163,7 +161,7 @@ namespace CGAS
             {
                 if (input.AssetId.AsBigInteger() == AssetId.AsBigInteger())
                     sender = sender ?? input.ScriptHash;
-                //SGAS address as inputs is not allowed
+                //CGAS address as inputs is not allowed
                 if (input.ScriptHash.AsBigInteger() == ExecutionEngine.ExecutingScriptHash.AsBigInteger())
                     return false;
             }
@@ -288,42 +286,9 @@ namespace CGAS
                 throw new InvalidOperationException("The parameter amount MUST be greater than 0.");
             if (ExecutionEngine.EntryScriptHash.AsBigInteger() != callscript.AsBigInteger())
                 return false;
-            if (!IsPayable(to) || !Runtime.CheckWitness(from)/*0.2*/)
+            if (!IsPayable(to))
                 return false;
-            StorageMap asset = Storage.CurrentContext.CreateMap(nameof(asset));
-            var fromAmount = asset.Get(from).AsBigInteger(); //0.1
-            if (fromAmount < amount)
-                return false;
-            if (from == to)
-                return true;
-
-            //Reduce payer balances
-            if (fromAmount == amount)
-                asset.Delete(from); //0.1
-            else
-                asset.Put(from, fromAmount - amount); //1
-
-            //Increase the payee balance
-            var toAmount = asset.Get(to).AsBigInteger(); //0.1
-            asset.Put(to, toAmount + amount); //1
-            
-            SetTxInfo(from, to, amount);
-            Transferred(from, to, amount);
-            return true;
-        }
-#if DEBUG
-        [DisplayName("transferAPP")] //Only for ABI file
-        public static bool TransferAPP(byte[] from, byte[] to, BigInteger amount) => true;
-#endif
-        //Methods of actual execution
-        private static bool TransferAPP(byte[] from, byte[] to, BigInteger amount, byte[] callscript)
-        {
-            //Check parameters
-            if (from.Length != 20 || to.Length != 20)
-                throw new InvalidOperationException("The parameters from and to SHOULD be 20-byte addresses.");
-            if (amount <= 0)
-                throw new InvalidOperationException("The parameter amount MUST be greater than 0.");
-            if (!IsPayable(to) || from.AsBigInteger() != callscript.AsBigInteger())
+            if (!Runtime.CheckWitness(from) && from.AsBigInteger() != callscript.AsBigInteger()) /*0.2*/
                 return false;
             StorageMap asset = Storage.CurrentContext.CreateMap(nameof(asset));
             var fromAmount = asset.Get(from).AsBigInteger(); //0.1
