@@ -1,5 +1,25 @@
 # CGAS
 
+## Release Note：
+
+**1.0.3** pre-release
+
+Script Hash: 0x74f2dc36a68fdc4682034178eb2220729231db76
+
+CGAS Contract Address: AScKxyXmNtEnTLTvbVhNQyTJmgytxhwSnM
+
+**1.0.2**
+
+Script Hash: [0x505663a29d83663a838eee091249abd167e928f5](https://neotracker.io/contract/505663a29d83663a838eee091249abd167e928f5)
+
+CGAS Contract Address: Ae8AD6Rc3cvQapqttJcUTj9ULfLi2tLHmc
+
+1.0.**1**
+
+Script Hash: [0x9121e89e8a0849857262d67c8408601b5e8e0524](https://neotracker.io/contract/9121e89e8a0849857262d67c8408601b5e8e0524)
+
+CGAS Contract Address: AK4LdT5ZXR9DQZjfk5X6Xy79mE8ad8jKAW
+
 [English](#en) [简体中文](#zh)
 
 <a name="en"></a>

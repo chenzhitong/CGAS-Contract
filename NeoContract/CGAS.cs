@@ -284,8 +284,6 @@ namespace CGAS
                 throw new InvalidOperationException("The parameters from and to SHOULD be 20-byte addresses.");
             if (amount <= 0)
                 throw new InvalidOperationException("The parameter amount MUST be greater than 0.");
-            if (ExecutionEngine.EntryScriptHash.AsBigInteger() != callscript.AsBigInteger())
-                return false;
             if (!IsPayable(to))
                 return false;
             if (!Runtime.CheckWitness(from) && from.AsBigInteger() != callscript.AsBigInteger()) /*0.2*/
