@@ -62,13 +62,11 @@ Other notifications realized in the contract:
 
 ## 合约说明：
 
-CGAS 是由 NGD（NEO Global Development）发布的符合 NEP-5 规范的合约资产，CGAS 可由 GAS 一比一地对换，并且支持退回操作。该合约的目的是将 GAS 进行全局资产的合约映射，使全局资产 GAS 可以方便地在合约内部流转，支持由合约调用转账。
+CGAS 可由 GAS 一比一地对换，并且支持退回操作。该合约的目的是将 GAS 进行全局资产的合约映射，使全局资产 GAS 可以方便地在合约内部流转，支持由合约调用转账。
+
+本项目为 CGAS preview 未在主网进行过部署，由 NGD 部署的 CGAS 参见 [这里](https://github.com/neo-ngd/CGAS-Contract)。
 
 ## 技术介绍：
-
-Script Hash: [0x9121e89e8a0849857262d67c8408601b5e8e0524](https://neotracker.io/contract/9121e89e8a0849857262d67c8408601b5e8e0524)
-
-CGAS 合约地址：AK4LdT5ZXR9DQZjfk5X6Xy79mE8ad8jKAW
 
 NEP-5 规范中的方法：
 

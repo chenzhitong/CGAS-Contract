@@ -306,7 +306,7 @@ namespace CGAS
             //Increase the payee balance
             var toAmount = asset.Get(to).AsBigInteger(); //0.1
             asset.Put(to, toAmount + amount); //1
-
+            
             SetTxInfo(from, to, amount);
             Transferred(from, to, amount);
             return true;
