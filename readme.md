@@ -2,7 +2,7 @@
 
 ## Release Note：
 
-**1.0.3** release
+**1.0.3**
 
 Script Hash: [0x74f2dc36a68fdc4682034178eb2220729231db76](https://neotracker.io/contract/74f2dc36a68fdc4682034178eb2220729231db76)
 
@@ -14,7 +14,7 @@ Script Hash: [0x505663a29d83663a838eee091249abd167e928f5](https://neotracker.io/
 
 CGAS Contract Address: Ae8AD6Rc3cvQapqttJcUTj9ULfLi2tLHmc
 
-1.0.**1**
+**1.0.1**
 
 Script Hash: [0x9121e89e8a0849857262d67c8408601b5e8e0524](https://neotracker.io/contract/9121e89e8a0849857262d67c8408601b5e8e0524)
 
