@@ -2,9 +2,9 @@
 
 ## Release Note：
 
-**1.0.3** pre-release
+**1.0.3** release
 
-Script Hash: 0x74f2dc36a68fdc4682034178eb2220729231db76
+Script Hash: [0x74f2dc36a68fdc4682034178eb2220729231db76](https://neotracker.io/contract/74f2dc36a68fdc4682034178eb2220729231db76)
 
 CGAS Contract Address: AScKxyXmNtEnTLTvbVhNQyTJmgytxhwSnM
 
