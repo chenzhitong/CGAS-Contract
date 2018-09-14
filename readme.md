@@ -26,6 +26,10 @@ CGAS Contract Address: AK4LdT5ZXR9DQZjfk5X6Xy79mE8ad8jKAW
 
 Known Issues: `transferAPP` method naming not canonical
 
+
+
+It is recommended to use the latest version, if you have already used the old version, do not worry, you can refund CGAS to GAS and transfer GAS to the latest version contract. the old version contract will not cause asset loss.
+
 ## Readme
 
 [English](#en) [简体中文](#zh)
