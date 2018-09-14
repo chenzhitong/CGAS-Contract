@@ -490,7 +490,7 @@ refund 第一步时的交易结构:
 >
 > Script: 调用 refund 方法，设置参数为退回者的 Script Hash
 >
-> Scripts: 需要两个 witness: 1、CAGA 合约的 witness; 2、用户的 witness（附加见证人）
+> Scripts: 需要两个 witness: 1、CGAS 合约的 witness; 2、用户的 witness（附加见证人）
 
 ```json
 {
@@ -603,7 +603,7 @@ refund 第二步的交易结构:
 >
 > Output: 转到用户自己的地址
 >
-> Scripts: CAGA 合约的 witness
+> Scripts: CGAS 合约的 witness
 
 ```json
 {
