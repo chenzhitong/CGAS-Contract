@@ -65,7 +65,6 @@ Additional methods other than NEP-5 methods used to support GAS-CGAS swap:
 
 Notification defined in NEP-5 standard:
 
-
 | Notification | Parameters                        | Descriptions                                                 |
 | ------------ | --------------------------------- | ------------------------------------------------------------ |
 | transfer     | byte[] from, byte[] to, int value | Notification contains the three elements of transfer: sender (from), recipient (to) and transfer value (value). CGAS is the default type of assets for transfer. |
@@ -380,7 +379,6 @@ NEP-5 规范中的通知：
 
 该合约实现的其它通知：
 
-
 | 通知   | 参数                    | 描述                                                         |
 | ------ | ----------------------- | ------------------------------------------------------------ |
 | refund | byte[] txid, byte[] who | 通知中包含转账的 2 个要素，待退回的 UTXO（txid），退回者的 Script Hash（who） |
@@ -389,7 +387,7 @@ NEP-5 规范中的通知：
 
 > [注意]
 >
->在 mintTokens 的时候请注意，InvocationTransaction 的 Inputs 和 Output 加起来不应该超过60个，否则在执行时所需的手续费会超过 10 GAS 的免费额度。如果有大量 GAS 的 UTXO 需要换成 CGAS，建议先进行一个普通转账，将 UTXO 合并，然后再进行 mintTokens 操作。
+> 在 mintTokens 的时候请注意，InvocationTransaction 的 Inputs 和 Output 加起来不应该超过60个，否则在执行时所需的手续费会超过 10 GAS 的免费额度。如果有大量 GAS 的 UTXO 需要换成 CGAS，建议先进行一个普通转账，将 UTXO 合并，然后再进行 mintTokens 操作。
 
 ### 示例
 
