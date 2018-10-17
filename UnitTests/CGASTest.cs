@@ -1,15 +1,13 @@
 ﻿using Neo;
-using Neo.Core;
 using Neo.IO;
+using Neo.Ledger;
+using Neo.Network.P2P.Payloads;
 using Neo.SmartContract;
 using Neo.VM;
 using Neo.Wallets;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UnitTests
 {
@@ -17,9 +15,8 @@ namespace UnitTests
 
     public static class CGASTest
     {
-        static readonly UInt160 CgasAddress = Wallet.ToScriptHash("AScKxyXmNtEnTLTvbVhNQyTJmgytxhwSnM");
         static readonly UInt160 ScriptHash = new UInt160("0x74f2dc36a68fdc4682034178eb2220729231db76".Remove(0, 2).HexToBytes().Reverse().ToArray());
-        static readonly UInt160 User = Wallet.ToScriptHash("AJd31a8rYPEBkY1QSxpsGy8mdU4vTYTD4U");
+        static readonly UInt160 User = "AJd31a8rYPEBkY1QSxpsGy8mdU4vTYTD4U".ToScriptHash();
         static readonly byte[] UserScript = "2103ad1d70f140d84a90ad4491cdf175fa64bfa9287a006e8cbd8f8db8500b5205baac".HexToBytes();
 
         //CGAS MintTokens
@@ -35,7 +32,7 @@ namespace UnitTests
             var outputs = new List<TransactionOutput>{ new TransactionOutput()
             {
                 AssetId = Blockchain.UtilityToken.Hash, //Asset Id, this is GAS
-                ScriptHash = CgasAddress, //CGAS 地址
+                ScriptHash = ScriptHash, //CGAS 地址
                 Value = new Fixed8((long)(1 * (long)Math.Pow(10, 8)))
             }}.ToArray();
 
@@ -57,11 +54,11 @@ namespace UnitTests
                     Outputs = outputs,
                     Inputs = inputs,
                     Attributes = new TransactionAttribute[0],
-                    Scripts = new Witness[0]
+                    Witnesses = new Witness[0]
                 };
             }
             var sign = new SignDelegate(SignWithWallet);
-            sign.Invoke(tx, "1.json", "1111111");
+            sign.Invoke(tx, "1.json", "11111111");
             Verify(tx);
         }
 
@@ -77,7 +74,7 @@ namespace UnitTests
             var outputs = new List<TransactionOutput>{ new TransactionOutput()
             {
                 AssetId = Blockchain.UtilityToken.Hash, //Asset Id, this is GAS
-                ScriptHash = CgasAddress, //CGAS 地址
+                ScriptHash = ScriptHash, //CGAS 地址
                 Value = new Fixed8((long)(9.99 * (long)Math.Pow(10, 8)))
             }}.ToArray();
 
@@ -109,10 +106,10 @@ namespace UnitTests
             };
 
             //Open wallet
-            var wallet = new Neo.Implementations.Wallets.NEP6.NEP6Wallet("0.json");
+            var wallet = new Neo.Wallets.NEP6.NEP6Wallet(new WalletIndexer("Index_0001E240"), "1.json");
             try
             {
-                wallet.Unlock("1");
+                wallet.Unlock("11111111");
             }
             catch (Exception)
             {
@@ -148,7 +145,7 @@ namespace UnitTests
             var witness = new Witness
             {
                 InvocationScript = verificationScript,
-                VerificationScript = Blockchain.Default.GetContract(ScriptHash).Script
+                VerificationScript = Blockchain.Singleton.Store.GetContracts().TryGet(ScriptHash).Script
             };
             var additionalWitness = new Witness
             {
@@ -156,7 +153,7 @@ namespace UnitTests
                 VerificationScript = UserScript
             };
             var witnesses = new Witness[2] { witness, additionalWitness };
-            tx.Scripts = witnesses.ToList().OrderBy(p => p.ScriptHash).ToArray();
+            tx.Witnesses = witnesses.ToList().OrderBy(p => p.ScriptHash).ToArray();
 
             Verify(tx);
         }
@@ -190,7 +187,7 @@ namespace UnitTests
             var witness = new Witness
             {
                 InvocationScript = verificationScript,
-                VerificationScript = Blockchain.Default.GetContract(ScriptHash).Script
+                VerificationScript = Blockchain.Singleton.Store.GetContracts().TryGet(ScriptHash).Script
             };
             tx = new ContractTransaction
             {
@@ -198,7 +195,7 @@ namespace UnitTests
                 Outputs = outputs,
                 Inputs = inputs,
                 Attributes = new TransactionAttribute[0],
-                Scripts = new Witness[] { witness }
+                Witnesses = new Witness[] { witness }
             };
 
             Verify(tx);
@@ -212,7 +209,7 @@ namespace UnitTests
             }
             tx.ToJson();
 
-            var wallet = new Neo.Implementations.Wallets.NEP6.NEP6Wallet((string)args[0]);
+            var wallet = new Neo.Wallets.NEP6.NEP6Wallet(new WalletIndexer("Index_0001E240"), (string)args[0]);
             try
             {
                 wallet.Unlock((string)args[1]);
@@ -228,7 +225,7 @@ namespace UnitTests
             if (context.Completed)
             {
                 Console.WriteLine("Sign successful");
-                tx.Scripts = context.GetScripts();
+                tx.Witnesses = context.GetWitnesses();
             }
             else
             {
@@ -247,7 +244,7 @@ namespace UnitTests
             {
                 Console.WriteLine("Invalid Transaction Format");
             }
-            if (tx.Verify(new List<Transaction> { tx }))
+            if (tx.Verify(Blockchain.Singleton.GetSnapshot(), new List<Transaction> { tx }))
             {
                 Console.WriteLine("Verify Transaction: True");
                 Console.WriteLine("Raw Transaction:");
