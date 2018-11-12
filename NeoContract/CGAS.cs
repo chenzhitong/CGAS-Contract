@@ -33,6 +33,7 @@ namespace CGAS
                 var inputs = tx.GetInputs();
                 var outputs = tx.GetOutputs();
                 //Check if the input has been marked
+                var currentHash = ExecutionEngine.ExecutingScriptHash;
                 foreach (var input in inputs)
                 {
                     if (input.PrevIndex == 0)//If UTXO n is 0, it is possible to be a marker UTXO
@@ -42,25 +43,25 @@ namespace CGAS
                         //If the input that is marked for refund
                         if (refundMan.Length > 0)
                         {
-                            //Only one input and one output is allowed in refund
-                            if (inputs.Length != 1 || outputs.Length != 1)
-                                return false;
+                            //Only one input from CGAS address is allowed in refund
+                            var references = tx.GetReferences();
+                            for (int i = 1; i < references.Length; i++)
+                            {
+                                if (references[i].ScriptHash.AsBigInteger() == currentHash.AsBigInteger())
+                                    return false;
+                            }
                             return outputs[0].ScriptHash.AsBigInteger() == refundMan.AsBigInteger();
                         }
                     }
                 }
-                var currentHash = ExecutionEngine.ExecutingScriptHash;
                 //If all the inputs are not marked for refund
                 BigInteger inputAmount = 0;
                 foreach (var refe in tx.GetReferences())
                 {
-                    if (refe.AssetId.AsBigInteger() != AssetId.AsBigInteger())
-                        return false;//Not allowed to operate assets other than GAS
-
                     if (refe.ScriptHash.AsBigInteger() == currentHash.AsBigInteger())
                         inputAmount += refe.Value;
                 }
-                //Check that there is no money left this contract
+                //Check that there is no GAS left this contract
                 BigInteger outputAmount = 0;
                 foreach (var output in outputs)
                 {
@@ -264,7 +265,11 @@ namespace CGAS
         public static string Symbol() => "CGAS";
 
         [DisplayName("supportedStandards")]
-        public static string SupportedStandards() => "{\"NEP-5\", \"NEP-7\", \"NEP-10\"}";
+        public static string[] SupportedStandards()
+        {
+            string[] result = { "NEP-5", "NEP-10", "NEP-1234" };
+            return result;
+        }
 
         [DisplayName("totalSupply")]
         public static BigInteger TotalSupply()
